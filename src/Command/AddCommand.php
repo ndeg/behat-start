@@ -2,7 +2,6 @@
 
 namespace App\Command;
 
-use App\OperationCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -23,10 +22,10 @@ class AddCommand extends OperationCommand
         ;
     }
 
-    /**
-     * {@inheritDoc}
-     * @throws \Exception
-     */
+//    /**
+//     * {@inheritDoc}
+//     * @throws \Exception
+//     */
     /*protected function execute(InputInterface $input, OutputInterface $output)
     {
         /*$numbers = $input->getArgument('numbers');

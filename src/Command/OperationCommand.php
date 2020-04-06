@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Command;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -10,7 +10,6 @@ abstract class OperationCommand extends Command
 {
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        //abstract function execteCommande(array numbers,);
         $numbers = $input->getArgument('numbers');
         if (!is_array($numbers)) {
             $numbers = [$numbers];
