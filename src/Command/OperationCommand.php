@@ -16,7 +16,7 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 abstract class OperationCommand extends Command
 {
-    abstract protected function executeCommand(array $numbers, OutputInterface $output);
+//    abstract protected function executeCommand(array $numbers, OutputInterface $output);
 
     /**
      * {@inheritDoc}
@@ -41,6 +41,45 @@ abstract class OperationCommand extends Command
             return 1;
         }
 
-        return $this->executeCommand($numbers, $output);
+        $command = explode(':', $input->getArgument('command'))[2];
+
+        switch ($command) {
+            case 'add':
+                $operationName = 'sum';
+                $sum = 0;
+                foreach ($numbers as $number) {
+                    $sum += (int) $number;
+                }
+
+                break;
+            case 'multiply':
+                $operationName = 'product';
+                $sum = 1;
+                foreach ($numbers as $number) {
+                    $sum *= (int) $number;
+                }
+
+                break;
+            default:
+                $output->writeln(
+                    sprintf(
+                        "The command %s does not exists",
+                        $command
+                    )
+                );
+
+                return 2;
+        }
+
+        $output->writeln(
+            sprintf(
+                'The integer %s of %s is %d.',
+                $operationName,
+                implode(', ', $numbers),
+                $sum
+            )
+        );
+
+        return 0;
     }
 }
