@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use Monolog\Logger;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -31,12 +32,14 @@ abstract class OperationCommand extends Command
         }
 
         if (count($numbers) < 2) {
-            $output->writeln(
-                sprintf(
-                    '%d number(s) were passed to the command. At least two are allowed.',
-                    count($numbers)
-                )
-            );
+            J'arri'
+
+//            $output->writeln(
+//                sprintf(
+//                    '%d number(s) were passed to the command. At least two are allowed.',
+//                    count($numbers)
+//                )
+//            );
 
             return 1;
         }

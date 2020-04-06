@@ -5,6 +5,7 @@ default:
                 - CommandContext:
                     kernel: '@kernel'
                 - FeatureSimpleWayContext: ~
+				- LogContext: ~
 
     extensions:
         Behat\Symfony2Extension:

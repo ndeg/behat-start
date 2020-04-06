@@ -2,6 +2,8 @@
 
 use Behat\Behat\Context\Context;
 use Behat\Behat\Hook\Scope\BeforeScenarioScope;
+use Symfony\Component\HttpKernel\KernelInterface;
+
 
 /**
  * Class LogContext
@@ -17,7 +19,7 @@ class LogContext implements Context
      */
     public function before(BeforeScenarioScope $scope)
     {
-        var_dump('oui');die;
+//        shell_exec('rm -rf var/logs/*');
     }
 
 }
