@@ -38,6 +38,9 @@ class CommandContext implements Context
 
         $arguments = [];
         foreach ($tableNode->getRowsHash() as $key => $value) {
+            if (!is_array($value)) {
+                $value = [$value];
+            }
             $arguments[$key] = $value;
         }
 
