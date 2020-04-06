@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
   <parameters>
-    <parameter key="kernel.root_dir">/home/ndeg/projects/behat-start/src</parameter>
-    <parameter key="kernel.project_dir">/home/ndeg/projects/behat-start</parameter>
+    <parameter key="kernel.root_dir">/var/www/html/behat-start/src</parameter>
+    <parameter key="kernel.project_dir">/var/www/html/behat-start</parameter>
     <parameter key="kernel.environment">test</parameter>
     <parameter key="kernel.debug">true</parameter>
     <parameter key="kernel.name">src</parameter>
-    <parameter key="kernel.cache_dir">/home/ndeg/projects/behat-start/var/cache/test</parameter>
-    <parameter key="kernel.logs_dir">/home/ndeg/projects/behat-start/var/log</parameter>
+    <parameter key="kernel.cache_dir">/var/www/html/behat-start/var/cache/test</parameter>
+    <parameter key="kernel.logs_dir">/var/www/html/behat-start/var/log</parameter>
     <parameter key="kernel.bundles" type="collection">
       <parameter key="FrameworkBundle">Symfony\Bundle\FrameworkBundle\FrameworkBundle</parameter>
       <parameter key="MonologBundle">Symfony\Bundle\MonologBundle\MonologBundle</parameter>
     </parameter>
     <parameter key="kernel.bundles_metadata" type="collection">
       <parameter key="FrameworkBundle" type="collection">
-        <parameter key="path">/home/ndeg/projects/behat-start/vendor/symfony/framework-bundle</parameter>
+        <parameter key="path">/var/www/html/behat-start/vendor/symfony/framework-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\FrameworkBundle</parameter>
       </parameter>
       <parameter key="MonologBundle" type="collection">
-        <parameter key="path">/home/ndeg/projects/behat-start/vendor/symfony/monolog-bundle</parameter>
+        <parameter key="path">/var/www/html/behat-start/vendor/symfony/monolog-bundle</parameter>
         <parameter key="namespace">Symfony\Bundle\MonologBundle</parameter>
       </parameter>
     </parameter>
@@ -44,13 +44,13 @@
       <parameter key="cookie_samesite">lax</parameter>
       <parameter key="gc_probability">1</parameter>
     </parameter>
-    <parameter key="session.save_path">/home/ndeg/projects/behat-start/var/cache/test/sessions</parameter>
+    <parameter key="session.save_path">/var/www/html/behat-start/var/cache/test/sessions</parameter>
     <parameter key="session.metadata.update_threshold">0</parameter>
     <parameter key="translator.logging">false</parameter>
-    <parameter key="translator.default_path">/home/ndeg/projects/behat-start/translations</parameter>
+    <parameter key="translator.default_path">/var/www/html/behat-start/translations</parameter>
     <parameter key="data_collector.templates" type="collection"/>
     <parameter key="debug.error_handler.throw_at">-1</parameter>
-    <parameter key="debug.container.dump">/home/ndeg/projects/behat-start/var/cache/test/srcApp_KernelTestDebugContainer.xml</parameter>
+    <parameter key="debug.container.dump">/var/www/html/behat-start/var/cache/test/srcApp_KernelTestDebugContainer.xml</parameter>
     <parameter key="router.request_context.host">localhost</parameter>
     <parameter key="router.request_context.scheme">http</parameter>
     <parameter key="router.request_context.base_url"></parameter>
@@ -79,6 +79,12 @@
       <tag name="console.command"/>
       <call method="setName">
         <argument>app:operations:add</argument>
+      </call>
+    </service>
+    <service id="App\Command\MultiplyCommand" class="App\Command\MultiplyCommand" autowire="true" autoconfigure="true">
+      <tag name="console.command"/>
+      <call method="setName">
+        <argument>app:operations:multiply</argument>
       </call>
     </service>
     <service id=".legacy_controller_name_converter" class="Symfony\Bundle\FrameworkBundle\Controller\ControllerNameParser" public="false">
@@ -397,7 +403,7 @@
     <service id="cache_warmer" class="Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate" public="true">
       <argument type="tagged_iterator" tag="kernel.cache_warmer"/>
       <argument>true</argument>
-      <argument>/home/ndeg/projects/behat-start/var/cache/test/srcApp_KernelTestDebugContainerDeprecations.log</argument>
+      <argument>/var/www/html/behat-start/var/cache/test/srcApp_KernelTestDebugContainerDeprecations.log</argument>
     </service>
     <service id="cache_clearer" class="Symfony\Component\HttpKernel\CacheClearer\ChainCacheClearer" public="true">
       <argument type="tagged_iterator" tag="kernel.cache_clearer"/>
@@ -405,9 +411,9 @@
     <service id="filesystem" class="Symfony\Component\Filesystem\Filesystem" public="true"/>
     <service id="file_locator" class="Symfony\Component\HttpKernel\Config\FileLocator" public="false">
       <argument type="service" id="kernel"/>
-      <argument>/home/ndeg/projects/behat-start/src/Resources</argument>
+      <argument>/var/www/html/behat-start/src/Resources</argument>
       <argument type="collection">
-        <argument>/home/ndeg/projects/behat-start/src</argument>
+        <argument>/var/www/html/behat-start/src</argument>
       </argument>
       <argument>false</argument>
     </service>
@@ -489,21 +495,21 @@
         <argument>/_fragment</argument>
       </call>
     </service>
-    <service id=".2_~cVgTVow" public="false">
+    <service id=".2_~SDrtIJL" public="false">
       <argument type="service" id="request_stack"/>
       <factory class="Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer" method="getAndCleanOutputBuffer"/>
     </service>
-    <service id=".1_~cVgTVow" public="false">
+    <service id=".1_~SDrtIJL" public="false">
       <argument type="service" id="request_stack"/>
       <argument>true</argument>
       <factory class="Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer" method="isDebug"/>
     </service>
     <service id="error_handler.error_renderer.html" class="Symfony\Component\ErrorHandler\ErrorRenderer\HtmlErrorRenderer">
-      <argument type="service" id=".1_~cVgTVow"/>
+      <argument type="service" id=".1_~SDrtIJL"/>
       <argument>UTF-8</argument>
       <argument type="service" id="debug.file_link_formatter" on-invalid="null"/>
-      <argument>/home/ndeg/projects/behat-start</argument>
-      <argument type="service" id=".2_~cVgTVow"/>
+      <argument>/var/www/html/behat-start</argument>
+      <argument type="service" id=".2_~SDrtIJL"/>
       <argument type="service" id="monolog.logger" on-invalid="null"/>
     </service>
     <service id="console.error_listener" class="Symfony\Component\Console\EventListener\ErrorListener" public="false">
@@ -523,7 +529,7 @@
     <service id="console.command.assets_install" class="Symfony\Bundle\FrameworkBundle\Command\AssetsInstallCommand" public="false">
       <tag name="console.command" command="assets:install"/>
       <argument type="service" id="filesystem"/>
-      <argument>/home/ndeg/projects/behat-start</argument>
+      <argument>/var/www/html/behat-start</argument>
       <call method="setName">
         <argument>assets:install</argument>
       </call>
@@ -637,7 +643,7 @@
       <argument type="service" id="translator.default"/>
       <argument type="service" id="translation.reader"/>
       <argument type="service" id="translation.extractor"/>
-      <argument>/home/ndeg/projects/behat-start/translations</argument>
+      <argument>/var/www/html/behat-start/translations</argument>
       <argument></argument>
       <argument type="collection"/>
       <argument type="collection"/>
@@ -651,7 +657,7 @@
       <argument type="service" id="translation.reader"/>
       <argument type="service" id="translation.extractor"/>
       <argument>en</argument>
-      <argument>/home/ndeg/projects/behat-start/translations</argument>
+      <argument>/var/www/html/behat-start/translations</argument>
       <argument></argument>
       <argument type="collection"/>
       <argument type="collection"/>
@@ -722,9 +728,9 @@
     <service id="cache.app" class="Symfony\Component\Cache\Adapter\FilesystemAdapter" public="true">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
-      <argument>xEo6t0ZSML</argument>
+      <argument>QX6UgJ6zXf</argument>
       <argument>0</argument>
-      <argument>/home/ndeg/projects/behat-start/var/cache/test/pools</argument>
+      <argument>/var/www/html/behat-start/var/cache/test/pools</argument>
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
@@ -740,50 +746,50 @@
     <service id="cache.system" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="true">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
-      <argument>xFGjNgH2nt</argument>
+      <argument>7u2dx2pUdC</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>/home/ndeg/projects/behat-start/var/cache/test/pools</argument>
+      <argument>/var/www/html/behat-start/var/cache/test/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.validator" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
-      <argument>2Jw17nFN30</argument>
+      <argument>NTatuS17Lv</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>/home/ndeg/projects/behat-start/var/cache/test/pools</argument>
+      <argument>/var/www/html/behat-start/var/cache/test/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.serializer" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
-      <argument>kU0SByQYWw</argument>
+      <argument>qNcyRGVOIW</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>/home/ndeg/projects/behat-start/var/cache/test/pools</argument>
+      <argument>/var/www/html/behat-start/var/cache/test/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.annotations" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
-      <argument>Qf9ldV8Tsa</argument>
+      <argument>7UwtCA8Dqs</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>/home/ndeg/projects/behat-start/var/cache/test/pools</argument>
+      <argument>/var/www/html/behat-start/var/cache/test/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
     <service id="cache.property_info" class="Symfony\Component\Cache\Adapter\AdapterInterface" public="false">
       <tag name="cache.pool"/>
       <tag name="kernel.reset" method="reset"/>
-      <argument>qsm+-CKPBW</argument>
+      <argument>nu4mSzrabO</argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>/home/ndeg/projects/behat-start/var/cache/test/pools</argument>
+      <argument>/var/www/html/behat-start/var/cache/test/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -793,7 +799,7 @@
       <argument></argument>
       <argument>0</argument>
       <argument>%container.build_id%</argument>
-      <argument>/home/ndeg/projects/behat-start/var/cache/test/pools</argument>
+      <argument>/var/www/html/behat-start/var/cache/test/pools</argument>
       <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createSystemCache"/>
     </service>
@@ -822,7 +828,7 @@
       <tag name="monolog.logger" channel="cache"/>
       <argument></argument>
       <argument>0</argument>
-      <argument>/home/ndeg/projects/behat-start/var/cache/test/pools</argument>
+      <argument>/var/www/html/behat-start/var/cache/test/pools</argument>
       <argument type="service" id="cache.default_marshaller" on-invalid="ignore"/>
       <call method="setLogger">
         <argument type="service" id="monolog.logger.cache" on-invalid="ignore"/>
@@ -928,6 +934,7 @@
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Command\AddCommand" type="service" id="App\Command\AddCommand" on-invalid="ignore_uninitialized"/>
+        <argument key="App\Command\MultiplyCommand" type="service" id="App\Command\MultiplyCommand" on-invalid="ignore_uninitialized"/>
         <argument key="Psr\Cache\CacheItemPoolInterface" type="service" id="cache.app" on-invalid="ignore_uninitialized"/>
         <argument key="Psr\Container\ContainerInterface" type="service" id="service_container" on-invalid="ignore_uninitialized"/>
         <argument key="Psr\Container\ContainerInterface $parameterBag" type="service" id="parameter_bag" on-invalid="ignore_uninitialized"/>
@@ -1144,8 +1151,8 @@
       </argument>
       <factory class="Symfony\Component\Cache\Adapter\AbstractAdapter" method="createConnection"/>
     </service>
-    <service id=".1_NativeFileSessionHandler~vEhtn4H" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler" public="false">
-      <argument>/home/ndeg/projects/behat-start/var/cache/test/sessions</argument>
+    <service id=".1_NativeFileSessionHandler~giubOep" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler" public="false">
+      <argument>/var/www/html/behat-start/var/cache/test/sessions</argument>
     </service>
     <service id="session" class="Symfony\Component\HttpFoundation\Session\Session" public="true">
       <argument type="service" id="session.storage.mock_file"/>
@@ -1168,12 +1175,12 @@
     <service id="session.flash_bag" class="Symfony\Component\HttpFoundation\Session\Flash\FlashBag" public="false"/>
     <service id="session.attribute_bag" class="Symfony\Component\HttpFoundation\Session\Attribute\AttributeBag" public="false"/>
     <service id="session.storage.mock_file" class="Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage" public="false">
-      <argument>/home/ndeg/projects/behat-start/var/cache/test/sessions</argument>
+      <argument>/var/www/html/behat-start/var/cache/test/sessions</argument>
       <argument>MOCKSESSID</argument>
       <argument type="service" id="session.storage.metadata_bag"/>
     </service>
     <service id="session.handler.native_file" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\StrictSessionHandler" public="false">
-      <argument type="service" id=".1_NativeFileSessionHandler~vEhtn4H"/>
+      <argument type="service" id=".1_NativeFileSessionHandler~giubOep"/>
     </service>
     <service id="session.abstract_handler" class="Symfony\Component\HttpFoundation\Session\Storage\Handler\AbstractSessionHandler" public="false">
       <argument></argument>
@@ -1232,16 +1239,16 @@
         </argument>
       </argument>
       <argument type="collection">
-        <argument key="cache_dir">/home/ndeg/projects/behat-start/var/cache/test/translations</argument>
+        <argument key="cache_dir">/var/www/html/behat-start/var/cache/test/translations</argument>
         <argument key="debug">true</argument>
         <argument key="resource_files" type="collection"/>
         <argument key="scanned_directories" type="collection">
-          <argument>/home/ndeg/projects/behat-start/translations</argument>
-          <argument>/home/ndeg/projects/behat-start/vendor/symfony/framework-bundle/translations</argument>
-          <argument>/home/ndeg/projects/behat-start/src/Resources/FrameworkBundle/translations</argument>
-          <argument>/home/ndeg/projects/behat-start/vendor/symfony/monolog-bundle/translations</argument>
-          <argument>/home/ndeg/projects/behat-start/src/Resources/MonologBundle/translations</argument>
-          <argument>/home/ndeg/projects/behat-start/src/Resources/translations</argument>
+          <argument>/var/www/html/behat-start/translations</argument>
+          <argument>/var/www/html/behat-start/vendor/symfony/framework-bundle/translations</argument>
+          <argument>/var/www/html/behat-start/src/Resources/FrameworkBundle/translations</argument>
+          <argument>/var/www/html/behat-start/vendor/symfony/monolog-bundle/translations</argument>
+          <argument>/var/www/html/behat-start/src/Resources/MonologBundle/translations</argument>
+          <argument>/var/www/html/behat-start/src/Resources/translations</argument>
         </argument>
         <argument key="cache_vary" type="collection">
           <argument key="scanned_directories" type="collection">
@@ -1470,7 +1477,7 @@
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor" public="false">
       <argument type="service" id="request_stack"/>
     </service>
-    <service id=".1_LegacyRouteLoaderContainer~dPagwPY" class="Symfony\Bundle\FrameworkBundle\Routing\LegacyRouteLoaderContainer" public="false">
+    <service id=".1_LegacyRouteLoaderContainer~t6NfVc8" class="Symfony\Bundle\FrameworkBundle\Routing\LegacyRouteLoaderContainer" public="false">
       <argument type="service" id="service_container"/>
       <argument type="service" id=".service_locator.XwZNkPh"/>
     </service>
@@ -1520,7 +1527,7 @@
     </service>
     <service id="routing.loader.container" class="Symfony\Component\Routing\Loader\ContainerLoader" public="false">
       <tag name="routing.loader"/>
-      <argument type="service" id=".1_LegacyRouteLoaderContainer~dPagwPY"/>
+      <argument type="service" id=".1_LegacyRouteLoaderContainer~t6NfVc8"/>
     </service>
     <service id="routing.loader" class="Symfony\Bundle\FrameworkBundle\Routing\DelegatingLoader" public="true">
       <argument type="service" id="routing.resolver"/>
@@ -1535,7 +1542,7 @@
       <argument type="service" id=".service_locator.1sxoqOx.router.default"/>
       <argument>kernel::loadRoutes</argument>
       <argument type="collection">
-        <argument key="cache_dir">/home/ndeg/projects/behat-start/var/cache/test</argument>
+        <argument key="cache_dir">/var/www/html/behat-start/var/cache/test</argument>
         <argument key="debug">true</argument>
         <argument key="generator_class">Symfony\Component\Routing\Generator\CompiledUrlGenerator</argument>
         <argument key="generator_dumper_class">Symfony\Component\Routing\Generator\Dumper\CompiledUrlGeneratorDumper</argument>
@@ -1574,7 +1581,7 @@
       <argument type="service" id="request_stack"/>
       <argument type="service" id="router.request_context" on-invalid="ignore"/>
       <argument type="service" id="monolog.logger.request" on-invalid="ignore"/>
-      <argument>/home/ndeg/projects/behat-start</argument>
+      <argument>/var/www/html/behat-start</argument>
       <argument>true</argument>
     </service>
     <service id="Symfony\Bundle\FrameworkBundle\Controller\RedirectController" class="Symfony\Bundle\FrameworkBundle\Controller\RedirectController" public="true">
@@ -1588,11 +1595,11 @@
     </service>
     <service id="secrets.vault" class="Symfony\Bundle\FrameworkBundle\Secrets\SodiumVault">
       <tag name="container.env_var_loader"/>
-      <argument>/home/ndeg/projects/behat-start/config/secrets/test</argument>
+      <argument>/var/www/html/behat-start/config/secrets/test</argument>
       <argument>%env(base64:default::SYMFONY_DECRYPTION_SECRET)%</argument>
     </service>
     <service id="secrets.local_vault" class="Symfony\Bundle\FrameworkBundle\Secrets\DotenvVault">
-      <argument>/home/ndeg/projects/behat-start/.env.test.local</argument>
+      <argument>/var/www/html/behat-start/.env.test.local</argument>
     </service>
     <service id="mime_types" class="Symfony\Component\Mime\MimeTypes" public="false">
       <call method="setDefault">
@@ -1650,7 +1657,7 @@
     </service>
     <service id="monolog.processor.psr_log_message" class="Monolog\Processor\PsrLogMessageProcessor" public="false"/>
     <service id="monolog.handler.nested" class="Monolog\Handler\StreamHandler">
-      <argument>/home/ndeg/projects/behat-start/var/log/test.log</argument>
+      <argument>/var/www/html/behat-start/var/log/test.log</argument>
       <argument>100</argument>
       <argument>true</argument>
       <argument>null</argument>
@@ -1661,6 +1668,8 @@
     </service>
     <service id=".instanceof.Symfony\Component\Console\Command\Command.0.App\Command\AddCommand" class="App\Command\AddCommand" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Command\AddCommand" class="App\Command\AddCommand" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Console\Command\Command.0.App\Command\MultiplyCommand" class="App\Command\MultiplyCommand" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Command\MultiplyCommand" class="App\Command\MultiplyCommand" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".service_locator.CmORmuK" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -1809,9 +1818,10 @@
       </argument>
     </service>
     <service id="console.command_loader" class="Symfony\Component\Console\CommandLoader\ContainerCommandLoader" public="true">
-      <argument type="service" id=".service_locator.GWiKCP1"/>
+      <argument type="service" id=".service_locator._fAhPIA"/>
       <argument type="collection">
         <argument key="app:operations:add">App\Command\AddCommand</argument>
+        <argument key="app:operations:multiply">App\Command\MultiplyCommand</argument>
         <argument key="about">console.command.about</argument>
         <argument key="assets:install">console.command.assets_install</argument>
         <argument key="cache:clear">console.command.cache_clear</argument>
@@ -1840,10 +1850,11 @@
         <argument key="secrets:encrypt-from-local">console.command.secrets_encrypt_from_local</argument>
       </argument>
     </service>
-    <service id=".service_locator.GWiKCP1" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator._fAhPIA" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="App\Command\AddCommand" type="service" id="App\Command\AddCommand"/>
+        <argument key="App\Command\MultiplyCommand" type="service" id="App\Command\MultiplyCommand"/>
         <argument key="console.command.about" type="service" id="console.command.about"/>
         <argument key="console.command.assets_install" type="service" id="console.command.assets_install"/>
         <argument key="console.command.cache_clear" type="service" id="console.command.cache_clear"/>
