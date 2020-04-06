@@ -63,7 +63,7 @@ abstract class OperationCommand extends Command
             default:
                 $output->writeln(
                     sprintf(
-                        "The command %s does not exists",
+                        "The command %s does not exist",
                         $command
                     )
                 );
