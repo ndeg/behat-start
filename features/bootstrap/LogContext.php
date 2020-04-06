@@ -17,11 +17,17 @@ class LogContext implements Context
     protected $logService;
 
     /**
-     * @Then the command have in his log :logtext
+     * @Then the command have in his log :logtext with :level
      */
-    public function theCommandHaveInHisLog($logtext)
+    public function theCommandHaveInHisLogWith($logtext, $level)
     {
         $this->logService = new LogService();
-        Assert::eq($this->logService->getLogMessageByLevel()[0], $logtext);
+        $logs = $this->logService->getLogMessageByLevel('[' . strtoupper($level) . ']');
+
+        $log = null;
+        if (count($logs)) {
+            $log = $logs[0];
+        }
+        Assert::eq($log, $logtext);
     }
 }

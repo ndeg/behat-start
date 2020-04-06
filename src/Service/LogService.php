@@ -47,12 +47,13 @@ class LogService
         $logMessages = [];
         foreach ($logs as $log) {
             $logExploded = null;
-            if (null !== strpos($log, CommandHelper::ADD_COMMAND_NAME)) {
+            if (false !== strpos($log, CommandHelper::ADD_COMMAND_NAME)) {
                 $logExploded = explode(CommandHelper::ADD_COMMAND_NAME, $log);
-            } else if(null !== strpos($log, CommandHelper::MULTIPLY_COMMAND_NAME)) {
+            } else if(false !== strpos($log, CommandHelper::MULTIPLY_COMMAND_NAME)) {
                 $logExploded = explode(CommandHelper::MULTIPLY_COMMAND_NAME, $log);
             }
-            if (null !== $logExploded) {
+
+            if (null !== $logExploded && 2 === count($logExploded)) {
                 $logMessages[] = $logExploded[1];
             }
         }

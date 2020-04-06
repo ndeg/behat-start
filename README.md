@@ -75,3 +75,5 @@ Vous pourrez utiliser :
 * Le service `monolog.logger` de Symfony
 
 Ne pas oublier les principes K.I.S.S.
+
+# Tout est fini normalement !
