@@ -56,7 +56,7 @@ class LogService
                 $logMessages[] = $logExploded[1];
             }
         }
-        var_dump($logMessages);
+
         return $logMessages;
     }
 
