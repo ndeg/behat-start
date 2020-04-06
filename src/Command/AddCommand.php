@@ -35,23 +35,33 @@ class AddCommand extends Command
             $numbers = [$numbers];
         }
 
-        if (2 != count($numbers)) {
-            // C'est un peu bourrin, mais ça permet de montrer comment gérer les exceptions.
-            throw new \Exception(
+        if (count($numbers) < 2) {
+            $output->writeln(
                 sprintf(
-                    '%d number(s) were passed to the command. Only two are allowed.',
+                    '%d number(s) were passed to the command. At least two are allowed.',
                     count($numbers)
                 )
             );
+
+            return 1;
+            // C'est un peu bourrin, mais ça permet de montrer comment gérer les exceptions.
+//            throw new \Exception(
+//                sprintf(
+//                    '%d number(s) were passed to the command. At least two are allowed.',
+//                    count($numbers)
+//                )
+//            );
         }
 
-        $sum = (int) $numbers[0] + (int) $numbers[1];
+        $sum = 0;
+        foreach ($numbers as $number) {
+            $sum += (int) $number;
+        }
 
         $output->writeln(
             sprintf(
-                'The integer sum of %g and %g is %d.',
-                $numbers[0],
-                $numbers[1],
+                'The integer sum of %s is %d.',
+                implode(', ', $numbers),
                 $sum
             )
         );
