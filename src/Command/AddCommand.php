@@ -2,7 +2,8 @@
 
 namespace App\Command;
 
-use App\Context\LogContext;
+use App\Helper\CommandHelper;
+use App\Service\LogService;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -10,6 +11,11 @@ use Symfony\Component\Console\Output\OutputInterface;
 class AddCommand extends OperationCommand
 {
     protected static $defaultName = 'app:operations:add';
+
+    public function __construct(string $name = '', LogService $logService = null)
+    {
+        parent::__construct($name ? $name : self::$defaultName, $logService);
+    }
 
     /**
      * {@inheritDoc}
@@ -29,7 +35,7 @@ class AddCommand extends OperationCommand
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $this->operationName = LogContext::ADD_COMMAND_NAME;
+        $this->operationName = CommandHelper::ADD_COMMAND_NAME;
         $this->message       = 'The integer sum of %s is %s.';
         $this->numbers       = $input->getArgument('numbers');
         $this->resultNumber  = array_sum($this->numbers);

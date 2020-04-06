@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use App\Context\LogContext;
+use App\Service\LogService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -17,6 +17,16 @@ abstract class OperationCommand extends Command
     protected $numbers;
     /** @var string */
     protected $resultNumber;
+    /** @var LogService */
+    protected $logService;
+
+    protected static $defaultName = 'app:operations:base';
+
+    public function __construct(string $name = '', LogService $logService = null)
+    {
+        $this->logService = $logService;
+        parent::__construct($name ? $name : self::$defaultName);
+    }
 
     /**
      * {@inheritDoc}
@@ -34,7 +44,7 @@ abstract class OperationCommand extends Command
                 count($this->numbers)
             );
 
-            $this->writeln($output, $message, LogContext::LEVEL_WARNING);
+            $this->writeln($output, $message, LogService::LEVEL_WARNING);
 
             return 1;
         }
@@ -57,13 +67,13 @@ abstract class OperationCommand extends Command
      *
      * @throws \Exception
      */
-    public function writeln(OutputInterface $output, $message = '', $level = LogContext::LEVEL_INFO)
+    public function writeln(OutputInterface $output, $message = '', $level = LogService::LEVEL_INFO)
     {
         if ('' === $message) {
             throw new \Exception('Empty message log.');
         }
 
         $output->writeln($message);
-        LogContext::log($this->operationName . $message, $level);
+        $this->logService->log($this->operationName . $message, $level);
     }
 }
