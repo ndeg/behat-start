@@ -17,9 +17,9 @@ class AddCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Add two integers.')
-            ->setHelp('Add two integers.')
-            ->addArgument('numbers', InputArgument::IS_ARRAY, 'The two integers to add.')
+            ->setDescription('Add integers.')
+            ->setHelp('Add integers.')
+            ->addArgument('numbers', InputArgument::IS_ARRAY, 'The X integers to add.')
         ;
     }
 
