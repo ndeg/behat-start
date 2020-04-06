@@ -6,7 +6,7 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-abstract class OperationCommand extends Command
+abstract class OperationsCommand extends Command
 {
     protected function execute(InputInterface $input, OutputInterface $output)
     {
@@ -27,19 +27,19 @@ abstract class OperationCommand extends Command
         }
 
         $command   = $input->getArgument('command');
-        $operation = 'Error in command !';
+        $label = 'Error in command !';
         $result    = null;
         $return    = 1;
 
-        if($command == 'app:command:add'){
-            $label = 'Sum';
+        if($command == 'app:operations:add'){
+            $label = 'sum';
             $result = 0;
             foreach ($numbers as $number) {
                 $result += (int) $number;
             }
             $return = 0;
-        }else if($command == 'app:command:multiply'){
-            $label = 'Product';
+        }else if($command == 'app:operations:multiply'){
+            $label = 'product';
             $result = 1;
             foreach ($numbers as $number) {
                 $result *= (int) $number;
