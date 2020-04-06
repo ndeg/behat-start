@@ -2,12 +2,12 @@
 
 namespace App\Command;
 
-use Symfony\Component\Console\Command\Command;
+use App\Context\LogContext;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class MultiplyCommand extends Command
+class MultiplyCommand extends OperationCommand
 {
     protected static $defaultName = 'app:operations:multiply';
 
@@ -29,34 +29,15 @@ class MultiplyCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $numbers = $input->getArgument('numbers');
+        $this->operationName = LogContext::MULTIPLY_COMMAND_NAME;
+        $this->message       = 'The integer multiply of %s is %s.';
+        $this->numbers       = $input->getArgument('numbers');
+        $this->resultNumber  = 1;
 
-        if (!is_array($numbers)) {
-            $numbers = [$numbers];
+        foreach ($this->numbers as $number) {
+            $this->resultNumber *= $number;
         }
 
-        if (2 > count($numbers)) {
-            $output->write(sprintf(
-                '%d number(s) were passed to the command. Only several are allowed.',
-                count($numbers)
-            ));
-
-            return 1;
-        }
-
-        $result = 1;
-        foreach ($numbers as $number) {
-            $result *= $number;
-        }
-
-        $output->writeln(
-            sprintf(
-                'The integer multiply of %s is %s.',
-                implode(' and ', $numbers),
-                $result
-            )
-        );
-
-        return 0;
+        return parent::execute($input, $output);
     }
 }
