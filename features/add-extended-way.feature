@@ -15,7 +15,7 @@ Feature: app:operations:add command
   Scenario: Add one integer raises exception
     When I run the "app:operations:add" command with arguments:
       | numbers | 2 |
-    And the command output should be "1 number(s) were passed to the command. Only two are allowed."
+    And the command output should be "1 number(s) were passed to the command. Only several are allowed."
     And the command return code is "1"
 
   Scenario: Add three integers

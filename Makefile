@@ -6,6 +6,7 @@ behat-simple-way: ## Run behat tests
 
 behat-extended-way: ## Run behat tests
 	./vendor/bin/behat features/add-extended-way.feature
+	./vendor/bin/behat features/multiply-extended-way.feature
 
 .PHONY: help
 

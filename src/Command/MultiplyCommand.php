@@ -7,9 +7,9 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class AddCommand extends Command
+class MultiplyCommand extends Command
 {
-    protected static $defaultName = 'app:operations:add';
+    protected static $defaultName = 'app:operations:multiply';
 
     /**
      * {@inheritDoc}
@@ -17,9 +17,9 @@ class AddCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Add integers.')
-            ->setHelp('Add integers.')
-            ->addArgument('numbers', InputArgument::IS_ARRAY, 'The integers to add.')
+            ->setDescription('Multiply integers.')
+            ->setHelp('Multiply integers.')
+            ->addArgument('numbers', InputArgument::IS_ARRAY, 'The integers to multiply.')
         ;
     }
 
@@ -44,11 +44,16 @@ class AddCommand extends Command
             return 1;
         }
 
+        $result = 1;
+        foreach ($numbers as $number) {
+            $result *= $number;
+        }
+
         $output->writeln(
             sprintf(
-                'The integer sum of %s is %s.',
+                'The integer multiply of %s is %s.',
                 implode(' and ', $numbers),
-                array_sum($numbers)
+                $result
             )
         );
 
