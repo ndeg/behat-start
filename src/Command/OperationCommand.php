@@ -2,6 +2,7 @@
 
 namespace App\Command;
 
+use App\Helper\CommandHelper;
 use App\Service\LogService;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
@@ -34,6 +35,8 @@ abstract class OperationCommand extends Command
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
+        $this->logService->clearLogFile();
+
         if (!is_array($this->numbers)) {
             $this->numbers = [$this->numbers];
         }
