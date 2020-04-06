@@ -37,12 +37,13 @@ class AddCommand extends Command
 
         if (2 > count($numbers)) {
             // C'est un peu bourrin, mais ça permet de montrer comment gérer les exceptions.
-            throw new \Exception(
+           $output->writeln(
                 sprintf(
                     '%d number(s) were passed to the command. Only two are allowed.',
                     count($numbers)
                 )
             );
+            return 1;
         }
         $sum = 0;
         foreach ($numbers as $number) {

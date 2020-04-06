@@ -7,7 +7,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class AddCommandMultiply extends Command
+class MultiplyCommand extends Command
 {
     protected static $defaultName = 'app:operations:multiply';
 
@@ -17,9 +17,9 @@ class AddCommandMultiply extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Add two integers.')
-            ->setHelp('Add two integers.')
-            ->addArgument('numbers', InputArgument::IS_ARRAY, 'The two integers to add.')
+            ->setDescription('Add two or more integers.')
+            ->setHelp('Add two or more integers.')
+            ->addArgument('numbers', InputArgument::IS_ARRAY, 'The two integers or more to add.')
         ;
     }
 
@@ -35,27 +35,24 @@ class AddCommandMultiply extends Command
             $numbers = [$numbers];
         }
 
-        if (2 < count($numbers)) {
-            // C'est un peu bourrin, mais ça permet de montrer comment gérer les exceptions.
-            throw new \Exception(
+        if (2 > count($numbers)) {
+            $output->writeln(
                 sprintf(
                     '%d number(s) were passed to the command. Only two are allowed.',
                     count($numbers)
                 )
             );
+            return 1;
         }
-
-        $sum = (int) $numbers[0] * (int) $numbers[1];
-
+        $sum = 1;
+        foreach ($numbers as $number) {
+            $sum *= (int)$number;
+        }
         $output->writeln(
             sprintf(
-                'The integer sum of %g and %g is %d.',
-                $numbers[0],
-                $numbers[1],
-                $sum
+                'The integer sum of '.implode(', ',$numbers).' is '.$sum.'.'
             )
         );
-
         return 0;
     }
 }
