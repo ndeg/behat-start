@@ -19,8 +19,14 @@ Feature: app:operations:add command
     And the command exception message should be "1 number(s) were passed to the command. Only two are allowed."
     And the command return code is "1"
 
-  Scenario: Add two integers
+  #Scenario: Add two integers
+   # When I run the "app:operations:add" command with arguments:
+    #  | numbers | 2 | 3 | 4
+    #Then the command output should be "The integer sum of 2 and 3 is 5."
+    #And the command return code is "0"
+
+  Scenario: Add three integers
     When I run the "app:operations:add" command with arguments:
-      | numbers | 2 | 3 | 4
-    Then the command output should be "The integer sum of 2 and 3 is 5."
-    And the command return code is "0"
+      | numbers | 2 | 3 | 4 |
+    Then the command exception should be of type "Exception"
+    And the command exception message should be "3 number(s) were passed to the command. Only two are allowed."
