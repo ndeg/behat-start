@@ -18,15 +18,17 @@ class FeatureSimpleWayContext implements Context
     /**
      * @When I call :command with :arg2
      * @When I call :command with :arg2 and :arg3
+     * @When I call :command with :arg2 and :arg3 and :arg4
      */
-    public function iCallWithAnd($command, $arg2, $arg3 = null)
+    public function iCallWithAnd($command, $arg2, $arg3 = null, $arg4 = null)
     {
         $this->output = shell_exec(
             sprintf(
-                "php bin/console %s %s %s",
+                "php bin/console %s %s %s %s",
                 $command,
                 $arg2,
-                $arg3
+                $arg3,
+                $arg4
             )
         );
     }
