@@ -35,13 +35,6 @@ class CommandContext implements Context
     {
         $application = new Application($this->kernel);
 
-        //Change class by command
-        if($command == 'app:operations:add'){
-            $application->add(new AddCommand());
-        } else {
-            $application->add(new MultiplyCommand());
-        }
-
         $command = $application->find($command);
 
         $arguments = [];

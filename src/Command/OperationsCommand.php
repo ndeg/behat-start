@@ -2,19 +2,25 @@
 
 namespace App\Command;
 
-use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
-use Psr\Log\LoggerAwareInterface;
 
 abstract class OperationsCommand extends Command
 {
+
+    /** @var LoggerInterface */
+    private $logger;
+    public function __construct(LoggerInterface $logger, string $name = null)
+    {
+        $this->logger = $logger;
+        parent::__construct($name);
+    }
+
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $numbers = $input->getArgument('numbers');
-
-        $logger = new Logger('logger.log');
 
         if (!is_array($numbers)) {
             $numbers = [$numbers];
@@ -27,7 +33,7 @@ abstract class OperationsCommand extends Command
                     count($numbers)
                 )
             );
-            $logger->warning('Error !');
+            $this->logger->warning('Error !');
             return 1;
         }
 

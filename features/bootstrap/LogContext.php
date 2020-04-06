@@ -14,7 +14,7 @@ class LogContext implements Context
      * @param BeforeScenarioScope $scope
      */
     public function before(BeforeScenarioScope $scope){
-        var_dump('beforeScenario');
+        file_exists('./var/log/test.log') ? unlink('./var/log/test.log') : '';
     }
 
 }

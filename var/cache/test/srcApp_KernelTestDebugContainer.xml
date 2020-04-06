@@ -77,12 +77,14 @@
     </service>
     <service id="App\Command\AddCommand" class="App\Command\AddCommand" autowire="true" autoconfigure="true">
       <tag name="console.command"/>
+      <argument type="service" id="monolog.logger"/>
       <call method="setName">
         <argument>app:operations:add</argument>
       </call>
     </service>
     <service id="App\Command\MultiplyCommand" class="App\Command\MultiplyCommand" autowire="true" autoconfigure="true">
       <tag name="console.command"/>
+      <argument type="service" id="monolog.logger"/>
       <call method="setName">
         <argument>app:operations:multiply</argument>
       </call>
@@ -1644,7 +1646,7 @@
           <argument key="urls" type="collection"/>
         </argument>
       </argument>
-      <argument>400</argument>
+      <argument>300</argument>
     </service>
     <service id="monolog.handler.main" class="Monolog\Handler\FingersCrossedHandler">
       <tag name="kernel.reset" method="reset"/>
