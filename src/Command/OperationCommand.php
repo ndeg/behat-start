@@ -2,7 +2,7 @@
 
 namespace App\Command;
 
-use Monolog\Logger;
+use Psr\Log\LoggerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -19,6 +19,15 @@ abstract class OperationCommand extends Command
 {
 //    abstract protected function executeCommand(array $numbers, OutputInterface $output);
 
+    /** @var LoggerInterface */
+    private $logger;
+
+    public function __construct(LoggerInterface $logger, string $name = null)
+    {
+        $this->logger = $logger;
+        parent::__construct($name);
+    }
+
     /**
      * {@inheritDoc}
      * @throws \Exception
@@ -32,14 +41,12 @@ abstract class OperationCommand extends Command
         }
 
         if (count($numbers) < 2) {
-            J'arri'
-
-//            $output->writeln(
-//                sprintf(
-//                    '%d number(s) were passed to the command. At least two are allowed.',
-//                    count($numbers)
-//                )
-//            );
+            $this->logger->warning(
+                sprintf(
+                '%d number(s) were passed to the command. At least two are allowed.',
+                count($numbers)
+            )
+            );
 
             return 1;
         }

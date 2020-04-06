@@ -21,26 +21,26 @@ class AddCommand extends OperationCommand
         ;
     }
 
-//    /**
-//     * @param array $numbers
-//     * @param OutputInterface $output
-//     * @return int
-//     */
-//    protected function executeCommand(array $numbers, OutputInterface $output)
-//    {
-//        $sum = 0;
-//        foreach ($numbers as $number) {
-//            $sum += (int) $number;
-//        }
-//
-//        $output->writeln(
-//            sprintf(
-//                'The integer sum of %s is %d.',
-//                implode(', ', $numbers),
-//                $sum
-//            )
-//        );
-//
-//        return 0;
-//    }
+    /**
+     * @param array $numbers
+     * @param OutputInterface $output
+     * @return int
+     */
+    protected function executeCommand(array $numbers, OutputInterface $output)
+    {
+        $sum = 0;
+        foreach ($numbers as $number) {
+            $sum += (int) $number;
+        }
+
+        $output->writeln(
+            sprintf(
+                'The integer sum of %s is %d.',
+                implode(', ', $numbers),
+                $sum
+            )
+        );
+
+        return 0;
+    }
 }

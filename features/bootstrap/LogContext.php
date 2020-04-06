@@ -19,7 +19,7 @@ class LogContext implements Context
      */
     public function before(BeforeScenarioScope $scope)
     {
-//        shell_exec('rm -rf var/logs/*');
+        file_exists('./var/log/test.log') ?: unlink('./var/log/test.log');
     }
 
 }
