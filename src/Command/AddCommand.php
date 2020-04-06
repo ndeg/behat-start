@@ -2,12 +2,12 @@
 
 namespace App\Command;
 
-use Symfony\Component\Console\Command\Command;
+use App\OperationCommand;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class AddCommand extends Command
+class AddCommand extends OperationCommand
 {
     protected static $defaultName = 'app:operations:add';
 
@@ -27,9 +27,9 @@ class AddCommand extends Command
      * {@inheritDoc}
      * @throws \Exception
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    /*protected function execute(InputInterface $input, OutputInterface $output)
     {
-        $numbers = $input->getArgument('numbers');
+        /*$numbers = $input->getArgument('numbers');
 
         if (!is_array($numbers)) {
             $numbers = [$numbers];
@@ -49,11 +49,11 @@ class AddCommand extends Command
         foreach ($numbers as $number) {
             $sum += (int)$number;
         }
-        $output->writeln(
+        /*$output->writeln(
             sprintf(
                 'The integer sum of '.implode(', ',$numbers).' is '.$sum.'.'
             )
         );
         return 0;
-    }
+    }*/
 }
