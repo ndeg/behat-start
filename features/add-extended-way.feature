@@ -20,6 +20,6 @@ Feature: app:operations:add command
 
   Scenario: Add three integers
     When I run the "app:operations:add" command with arguments:
-      | numbers | 2 | 3 | 4
+      | numbers | 2 | 3 | 4 |
     Then the command exception should be of type "Exception"
     And the command exception message should be "3 number(s) were passed to the command. Only two are allowed."
