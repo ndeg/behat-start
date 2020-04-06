@@ -17,7 +17,6 @@ Feature: app:operations:multiply command
       | numbers | 2 |
     Then the command exception should be of type "Exception"
     And the command exception message should be "1 number(s) were passed to the command. Only two are allowed."
-    And the command return code is "1"
 
   Scenario: Add two integers
     When I run the "app:operations:add" command with arguments:
@@ -38,7 +37,7 @@ Feature: app:operations:multiply command
     Then the command output should be "The integer sum of 2 and 3 is 6."
     And the command return code is "0"
 
-  Scenario: Add two floats converted to int before addition
+  Scenario: Add two floats converted to int before multiply
     When I run the "app:operations:multiply" command with arguments:
       | numbers | 2.1 | 3.9 |
     Then the command output should be "The integer sum of 2,1 and 3,9 is 8,19."

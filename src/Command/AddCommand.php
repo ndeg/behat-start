@@ -17,9 +17,9 @@ class AddCommand extends Command
     protected function configure()
     {
         $this
-            ->setDescription('Add two integers.')
-            ->setHelp('Add two integers.')
-            ->addArgument('numbers', InputArgument::IS_ARRAY, 'The two integers to add.')
+            ->setDescription('Add two or more integers.')
+            ->setHelp('Add two or more integers.')
+            ->addArgument('numbers', InputArgument::IS_ARRAY, 'The two integers or more to add.')
         ;
     }
 
@@ -35,7 +35,7 @@ class AddCommand extends Command
             $numbers = [$numbers];
         }
 
-        if (2 != count($numbers)) {
+        if (2 > count($numbers)) {
             // C'est un peu bourrin, mais ça permet de montrer comment gérer les exceptions.
             throw new \Exception(
                 sprintf(
@@ -45,8 +45,10 @@ class AddCommand extends Command
             );
         }
 
-        $sum = (int) $numbers[0] + (int) $numbers[1];
-
+        $sum = 0;
+        foreach ($numbers as $number) {
+            $sum += $number;
+        }
         $output->writeln(
             sprintf(
                 'The integer sum of %g and %g is %d.',

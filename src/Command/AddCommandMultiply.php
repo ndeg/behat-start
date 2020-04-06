@@ -35,7 +35,7 @@ class AddCommandMultiply extends Command
             $numbers = [$numbers];
         }
 
-        if (2 != count($numbers)) {
+        if (2 < count($numbers)) {
             // C'est un peu bourrin, mais ça permet de montrer comment gérer les exceptions.
             throw new \Exception(
                 sprintf(
