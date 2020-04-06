@@ -11,6 +11,7 @@ abstract class OperationsCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $numbers = $input->getArgument('numbers');
+        $logger = $this->get('logger');
 
         if (!is_array($numbers)) {
             $numbers = [$numbers];
@@ -23,6 +24,7 @@ abstract class OperationsCommand extends Command
                     count($numbers)
                 )
             );
+            $logger->info('Error !');
             return 1;
         }
 

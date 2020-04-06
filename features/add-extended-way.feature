@@ -1,4 +1,4 @@
-Feature: app:operations:add command
+Feature: app:operations:add / multiply command
 
   Scenario: Add two integers
     When I run the "app:operations:add" command with arguments:
