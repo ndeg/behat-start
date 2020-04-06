@@ -44,20 +44,15 @@ class AddCommand extends Command
                 )
             );
         }
-
         $sum = 0;
         foreach ($numbers as $number) {
-            $sum += $number;
+            $sum += (int)$number;
         }
         $output->writeln(
             sprintf(
-                'The integer sum of %g and %g is %d.',
-                $numbers[0],
-                $numbers[1],
-                $sum
+                'The integer sum of '.implode(', ',$numbers).' is '.$sum.'.'
             )
         );
-
         return 0;
     }
 }
