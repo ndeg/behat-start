@@ -1,6 +1,7 @@
 <?php
 
 use App\Command\AddCommand;
+use App\Command\MultiplyCommand;
 use Behat\Behat\Context\Context;
 use Behat\Gherkin\Node\TableNode;
 use Symfony\Bundle\FrameworkBundle\Console\Application;

@@ -45,7 +45,7 @@ class MultiplyCommand extends Command
             return 1;
         }
 
-        $sum = 0;
+        $sum = 1;
         foreach ($numbers as $number){
             $sum *= (int) $number;
         }
