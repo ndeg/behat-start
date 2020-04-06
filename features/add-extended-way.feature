@@ -17,4 +17,10 @@ Feature: app:operations:add command
       | numbers | 2 |
     Then the command exception should be of type "Exception"
     And the command exception message should be "1 number(s) were passed to the command. Only two are allowed."
-    And the command return code is "1"
+#    And the command return code is "1"
+
+  Scenario: Add three integer raises exception
+    When I run the "app:operations:add" command with arguments:
+      | numbers | 2 | 4 | 6 |
+    Then the command exception should be of type "Exception"
+    And the command exception message should be "3 number(s) were passed to the command. Only two are allowed."
