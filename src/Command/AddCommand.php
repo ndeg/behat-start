@@ -2,12 +2,10 @@
 
 namespace App\Command;
 
-use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
-use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class AddCommand extends Command
+class AddCommand extends OperationCommand
 {
     protected static $defaultName = 'app:operations:add';
 
@@ -24,34 +22,21 @@ class AddCommand extends Command
     }
 
     /**
-     * {@inheritDoc}
-     * @throws \Exception
+     * @param array $numbers
+     * @param OutputInterface $output
+     * @return int
      */
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function executeCommand(array $numbers, OutputInterface $output)
     {
-        $numbers = $input->getArgument('numbers');
-
-        if (!is_array($numbers)) {
-            $numbers = [$numbers];
+        $sum = 0;
+        foreach ($numbers as $number) {
+            $sum += (int) $number;
         }
-
-        if (2 != count($numbers)) {
-            // C'est un peu bourrin, mais ça permet de montrer comment gérer les exceptions.
-            throw new \Exception(
-                sprintf(
-                    '%d number(s) were passed to the command. Only two are allowed.',
-                    count($numbers)
-                )
-            );
-        }
-
-        $sum = (int) $numbers[0] + (int) $numbers[1];
 
         $output->writeln(
             sprintf(
-                'The integer sum of %g and %g is %d.',
-                $numbers[0],
-                $numbers[1],
+                'The integer sum of %s is %d.',
+                implode(', ', $numbers),
                 $sum
             )
         );

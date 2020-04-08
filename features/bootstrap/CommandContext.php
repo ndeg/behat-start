@@ -33,7 +33,6 @@ class CommandContext implements Context
     public function iRunTheAppOperationsAddCommandWithArguments(string $command, TableNode $tableNode)
     {
         $application = new Application($this->kernel);
-        $application->add(new AddCommand());
         $command = $application->find($command);
 
         $arguments = [];
