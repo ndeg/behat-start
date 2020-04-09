@@ -6,9 +6,9 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class AddCommand extends OperationCommand
+class MultiplyCommand extends OperationCommand
 {
-    protected static $defaultName = 'app:operations:add';
+    protected static $defaultName = 'app:operations:multiply';
 
     /**
      * {@inheritDoc}
@@ -28,15 +28,14 @@ class AddCommand extends OperationCommand
 //     */
     /*protected function execute(InputInterface $input, OutputInterface $output)
     {
-        /*$numbers = $input->getArgument('numbers');
+        $numbers = $input->getArgument('numbers');
 
         if (!is_array($numbers)) {
             $numbers = [$numbers];
         }
 
         if (2 > count($numbers)) {
-            // C'est un peu bourrin, mais ça permet de montrer comment gérer les exceptions.
-           $output->writeln(
+            $output->writeln(
                 sprintf(
                     '%d number(s) were passed to the command. Only two are allowed.',
                     count($numbers)
@@ -44,11 +43,11 @@ class AddCommand extends OperationCommand
             );
             return 1;
         }
-        $sum = 0;
+        $sum = 1;
         foreach ($numbers as $number) {
-            $sum += (int)$number;
+            $sum *= (int)$number;
         }
-        /*$output->writeln(
+        $output->writeln(
             sprintf(
                 'The integer sum of '.implode(', ',$numbers).' is '.$sum.'.'
             )
